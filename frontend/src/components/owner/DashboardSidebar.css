@@ -1,0 +1,212 @@
+/* ===========================================
+   LUXURY DASHBOARD SIDEBAR - Dark Gold Theme
+   =========================================== */
+
+.dashboard-sidebar {
+  width: 260px;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 13, 15, 0.98),
+    rgba(8, 10, 12, 1)
+  );
+  border-right: 1px solid rgba(201, 169, 98, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.sidebar-header {
+  padding: 28px 24px;
+  border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-family: var(--font-display, "Cormorant Garamond", serif);
+  font-size: 1.75rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.logo-text {
+  font-family: var(--font-display, "Cormorant Garamond", serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-style: italic;
+  background: linear-gradient(135deg, #c9a962, #e8d5a3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: rgba(201, 169, 98, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  border-left-color: rgba(201, 169, 98, 0.3);
+}
+
+.nav-item.active {
+  background: linear-gradient(90deg, rgba(201, 169, 98, 0.12), transparent);
+  color: #c9a962;
+  border-left-color: #c9a962;
+}
+
+.nav-item.active .nav-icon {
+  transform: scale(1.1);
+  color: #c9a962;
+}
+
+.nav-icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.nav-label {
+  flex: 1;
+  letter-spacing: 0.01em;
+}
+
+.nav-badge {
+  background: linear-gradient(135deg, #c9a962, #b8954a);
+  color: #0a0a0a;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 20px 16px;
+  border-top: 1px solid rgba(201, 169, 98, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.back-to-home-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  background: transparent;
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  color: rgba(201, 169, 98, 0.7);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 6px;
+}
+
+.back-to-home-btn:hover {
+  background: rgba(201, 169, 98, 0.1);
+  border-color: rgba(201, 169, 98, 0.5);
+  color: #c9a962;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: rgba(229, 115, 115, 0.08);
+  border-color: rgba(229, 115, 115, 0.3);
+  color: #e57373;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    width: 70px;
+    position: fixed;
+    z-index: 100;
+  }
+
+  .sidebar-header {
+    padding: 20px 12px;
+    justify-content: center;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .nav-label,
+  .nav-badge {
+    display: none;
+  }
+
+  .nav-item {
+    justify-content: center;
+    padding: 14px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-item.active {
+    border-left: none;
+    border-bottom-color: #c9a962;
+  }
+
+  .nav-icon {
+    margin: 0;
+  }
+
+  .logout-btn span:last-child {
+    display: none;
+  }
+
+  .logout-btn {
+    justify-content: center;
+  }
+}

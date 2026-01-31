@@ -1,0 +1,416 @@
+/* ===========================================
+   LUXURY MESSAGES PAGE STYLES
+   =========================================== */
+
+.messages-page {
+    min-height: 100vh;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    padding-top: 80px;
+}
+
+/* ============ HEADER ============ */
+.messages-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 48px;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.messages-header .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.messages-header .back-btn:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+}
+
+.messages-header h1 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    flex: 1;
+}
+
+.conversation-count {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+/* ============ CONTAINER ============ */
+.messages-container {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    height: calc(100vh - 160px);
+}
+
+/* ============ CONVERSATIONS LIST ============ */
+.conversations-list {
+    background: var(--color-bg-secondary);
+    border-right: 1px solid var(--color-border);
+    overflow-y: auto;
+}
+
+.conversation-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: background var(--transition-base);
+}
+
+.conversation-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.conversation-item.active {
+    background: rgba(201, 169, 98, 0.1);
+    border-left: 3px solid var(--color-accent-gold);
+}
+
+.conversation-avatar {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--color-accent-gold);
+    background: rgba(201, 169, 98, 0.1);
+    border: 1px solid rgba(201, 169, 98, 0.2);
+    flex-shrink: 0;
+}
+
+.conversation-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.conversation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.conversation-header h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.conversation-time {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.conversation-preview {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+}
+
+.status-badge.pending {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-badge.responded {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.no-conversations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.no-conversations span {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.no-conversations p {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+}
+
+.no-conversations small {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+/* ============ MESSAGE THREAD ============ */
+.message-thread {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-primary);
+}
+
+.no-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.no-selection span {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.no-selection p {
+    font-size: 16px;
+    color: var(--color-text-muted);
+}
+
+.thread-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.back-btn-mobile {
+    display: none;
+}
+
+.thread-info h2 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.thread-info p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.messages-list {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message {
+    display: flex;
+    max-width: 70%;
+}
+
+.message.sent {
+    align-self: flex-end;
+}
+
+.message.received {
+    align-self: flex-start;
+}
+
+.message-content {
+    padding: 16px 20px;
+    border: 1px solid var(--color-border);
+}
+
+.message.sent .message-content {
+    background: rgba(201, 169, 98, 0.1);
+    border-color: rgba(201, 169, 98, 0.2);
+}
+
+.message.received .message-content {
+    background: var(--color-bg-secondary);
+}
+
+.message-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+}
+
+.message-time {
+    font-size: 11px;
+    color: var(--color-text-muted);
+}
+
+/* ============ MESSAGE INPUT ============ */
+.message-input {
+    display: flex;
+    gap: 12px;
+    padding: 20px 32px;
+    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
+}
+
+.message-input input {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    transition: border-color var(--transition-base);
+}
+
+.message-input input:focus {
+    outline: none;
+    border-color: var(--color-accent-gold);
+}
+
+.message-input button {
+    padding: 14px 24px;
+    font-size: 16px;
+    color: var(--color-bg-primary);
+    background: var(--color-accent-gold);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition-base);
+}
+
+.message-input button:hover:not(:disabled) {
+    background: var(--color-text-primary);
+}
+
+.message-input button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============ EMPTY STATES ============ */
+.empty-state,
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 200px);
+    padding: 40px;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+}
+
+.empty-state h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 12px;
+}
+
+.empty-state p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+}
+
+.empty-state .btn-primary {
+    padding: 14px 32px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-bg-primary);
+    background: var(--color-accent-gold);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition-base);
+}
+
+.empty-state .btn-primary:hover {
+    background: var(--color-text-primary);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .messages-header {
+        padding: 16px 24px;
+    }
+    
+    .messages-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .conversations-list.hide-mobile {
+        display: none;
+    }
+    
+    .message-thread {
+        display: none;
+    }
+    
+    .message-thread.show-mobile {
+        display: flex;
+    }
+    
+    .back-btn-mobile {
+        display: block;
+        padding: 8px 16px;
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        background: transparent;
+        border: 1px solid var(--color-border);
+        cursor: pointer;
+    }
+    
+    .messages-list {
+        padding: 16px;
+    }
+    
+    .message {
+        max-width: 85%;
+    }
+    
+    .message-input {
+        padding: 16px;
+    }
+}
