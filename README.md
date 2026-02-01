@@ -1,8 +1,8 @@
-# RoomGi 🏠
+# ResiDo 🏠
 
 **Property Buy-Sell & Owner Management Platform**
 
-![RoomGi Preview](frontend/public/mascot.png)
+![ResiDo Preview](frontend/public/mascot.png)
 
 A modern property marketplace for buying/selling homes directly from verified owners. Built with a sleek neon green & black UI featuring an interactive 3D mascot.
 
@@ -54,8 +54,8 @@ A modern property marketplace for buying/selling homes directly from verified ow
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/RoomGi.git
-cd RoomGi
+git clone https://github.com/yourusername/ResiDo.git
+cd ResiDo
 
 # Install frontend dependencies
 cd frontend
@@ -87,7 +87,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-RoomGi/
+ResiDo/
 ├── frontend/               # React + Vite app
 │   ├── public/            # Static assets (mascot, images)
 │   ├── src/
@@ -178,4 +178,4 @@ Built with 💚 for property seekers everywhere.
 
 ---
 
-*Last Updated: January 2026*
+*Last Updated: 2026-02-01 05:50:51*
