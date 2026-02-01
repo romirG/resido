@@ -308,7 +308,7 @@ Get market insights with:
 | **Srijan Gupta** | Developer | srijan.gupta@iiitb.ac.in | +91 9179646803 |
 
 ### Institution
-**International Institute of Information Technology Bangalore (IIIT-B)**  
+**International Institute of Information Technology Bangalore (IIITB)**  
 26/C, Opposite Infosys Gate 10  
 Electronics City Phase 1, Hosur Road  
 Bengaluru - 560100  
