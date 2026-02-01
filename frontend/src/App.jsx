@@ -18,6 +18,7 @@ const WishlistPage = lazy(() => import("./pages/WishlistPage"));
 const MessagesPage = lazy(() => import("./pages/MessagesPage"));
 const EMICalculatorPage = lazy(() => import("./pages/EMICalculatorPage"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
+const MarketAnalytics = lazy(() => import("./pages/MarketAnalytics"));
 
 // Sample property data
 const PROPERTIES = [
@@ -341,6 +342,15 @@ function App() {
     return (
       <Suspense fallback={<LuxuryLoading />}>
         <AboutUs onNavigate={handleNavigate} />
+      </Suspense>
+    );
+  }
+
+  // Handle Market Analytics page
+  if (currentPage === "market-analytics") {
+    return (
+      <Suspense fallback={<LuxuryLoading />}>
+        <MarketAnalytics onNavigate={handleNavigate} />
       </Suspense>
     );
   }

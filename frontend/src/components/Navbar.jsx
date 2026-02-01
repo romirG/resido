@@ -81,6 +81,15 @@ function Navbar({ onNavigate, currentPage }) {
                             News
                         </a>
                     </li>
+                    <li>
+                        <a
+                            href="#"
+                            onClick={(e) => handleNavClick(e, 'market-analytics')}
+                            className={currentPage === 'market-analytics' ? 'active' : ''}
+                        >
+                            Analytics
+                        </a>
+                    </li>
                 </ul>
 
                 {/* Actions */}

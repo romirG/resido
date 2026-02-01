@@ -129,6 +129,17 @@ function LuxuryFooter({ onNavigate }) {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
+                      onNavigate("market-analytics");
+                    }}
+                  >
+                    Market Analytics
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
                       onNavigate("about");
                     }}
                   >

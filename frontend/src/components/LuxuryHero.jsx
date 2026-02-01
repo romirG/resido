@@ -171,6 +171,15 @@ function LuxuryHero({ onNavigate }) {
             href="#"
             onClick={(e) => {
               e.preventDefault();
+              onNavigate("market-analytics");
+            }}
+          >
+            Analytics
+          </a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
               onNavigate("wishlist");
             }}
           >
