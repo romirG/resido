@@ -346,93 +346,55 @@ function LuxuryBrowseProperties({
           </p>
         </div>
 
-        {/* Search Bar */}
-        <div className="luxury-browse__search-bar">
-          <div className="search-input-wrapper">
-            <svg
-              className="search-icon"
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-            <input
-              type="text"
-              className="luxury-search-input"
-              placeholder="Search by location, property type, or keyword..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            {searchQuery && (
-              <button
-                className="clear-search-btn"
-                onClick={() => setSearchQuery("")}
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Quick Filters */}
-        <div className="luxury-browse__quick-filters">
-          <button
-            className={`quick-filter-btn ${showFilters ? "active" : ""}`}
-            onClick={() => setShowFilters(!showFilters)}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <line x1="4" y1="21" x2="4" y2="14" />
-              <line x1="4" y1="10" x2="4" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="12" />
-              <line x1="12" y1="8" x2="12" y2="3" />
-              <line x1="20" y1="21" x2="20" y2="16" />
-              <line x1="20" y1="12" x2="20" y2="3" />
-            </svg>
-            Filters
-          </button>
-
-          <div className="view-toggle">
-            <button
-              className={`view-btn ${viewMode === "grid" ? "active" : ""}`}
-              onClick={() => setViewMode("grid")}
-            >
+        {/* Search Bar with Filters */}
+        <div className="luxury-browse__search-row">
+          <div className="luxury-browse__search-bar">
+            <div className="search-input-wrapper">
               <svg
+                className="search-icon"
                 viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="currentColor"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
               >
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
               </svg>
-            </button>
+              <input
+                type="text"
+                className="luxury-search-input"
+                placeholder="Search by location, property type, or keyword..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  className="clear-search-btn"
+                  onClick={() => setSearchQuery("")}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Filters */}
+          <div className="luxury-browse__quick-filters">
             <button
-              className={`view-btn ${viewMode === "map" ? "active" : ""}`}
-              onClick={() => setViewMode("map")}
+              className={`quick-filter-btn ${showFilters ? "active" : ""}`}
+              onClick={() => setShowFilters(!showFilters)}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -442,10 +404,50 @@ function LuxuryBrowseProperties({
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
+                <line x1="4" y1="21" x2="4" y2="14" />
+                <line x1="4" y1="10" x2="4" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12" y2="3" />
+                <line x1="20" y1="21" x2="20" y2="16" />
+                <line x1="20" y1="12" x2="20" y2="3" />
               </svg>
+              Filters
             </button>
+
+            <div className="view-toggle">
+              <button
+                className={`view-btn ${viewMode === "grid" ? "active" : ""}`}
+                onClick={() => setViewMode("grid")}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="currentColor"
+                >
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                </svg>
+              </button>
+              <button
+                className={`view-btn ${viewMode === "map" ? "active" : ""}`}
+                onClick={() => setViewMode("map")}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -453,104 +455,197 @@ function LuxuryBrowseProperties({
       {/* Filter Panel */}
       <div className={`luxury-filter-panel ${showFilters ? "open" : ""}`}>
         <div className="luxury-filter-panel__content">
-          <div className="filter-section">
-            <label>City</label>
-            <select
-              value={filters.city}
-              onChange={(e) => handleFilterChange("city", e.target.value)}
-            >
-              <option value="">All Cities</option>
-              {CITIES.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-section">
-            <label>Listing Type</label>
-            <div className="filter-buttons">
-              <button
-                className={filters.listing_type === "" ? "active" : ""}
-                onClick={() => handleFilterChange("listing_type", "")}
+          {/* Location Section */}
+          <div className="filter-group">
+            <h4 className="filter-group__title">
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
               >
-                All
-              </button>
-              <button
-                className={filters.listing_type === "sale" ? "active" : ""}
-                onClick={() => handleFilterChange("listing_type", "sale")}
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Location
+            </h4>
+            <div className="filter-section">
+              <label>City</label>
+              <select
+                value={filters.city}
+                onChange={(e) => handleFilterChange("city", e.target.value)}
               >
-                Buy
-              </button>
+                <option value="">All Cities</option>
+                {CITIES.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
-          <div className="filter-section">
-            <label>Bedrooms</label>
-            <div className="filter-buttons">
-              {["", "1", "2", "3", "4+"].map((bed) => (
+          {/* Property Type Section */}
+          <div className="filter-group">
+            <h4 className="filter-group__title">
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              Property Type
+            </h4>
+            <div className="filter-section">
+              <label>Listing Type</label>
+              <div className="filter-buttons">
                 <button
-                  key={bed}
-                  className={filters.bedrooms === bed ? "active" : ""}
-                  onClick={() => handleFilterChange("bedrooms", bed)}
+                  className={filters.listing_type === "" ? "active" : ""}
+                  onClick={() => handleFilterChange("listing_type", "")}
                 >
-                  {bed || "Any"}
+                  All
                 </button>
-              ))}
+                <button
+                  className={filters.listing_type === "sale" ? "active" : ""}
+                  onClick={() => handleFilterChange("listing_type", "sale")}
+                >
+                  Buy
+                </button>
+              </div>
+            </div>
+            <div className="filter-section">
+              <label>Bedrooms</label>
+              <div className="filter-buttons">
+                {["", "1", "2", "3", "4+"].map((bed) => (
+                  <button
+                    key={bed}
+                    className={filters.bedrooms === bed ? "active" : ""}
+                    onClick={() => handleFilterChange("bedrooms", bed)}
+                  >
+                    {bed || "Any"}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="filter-section">
-            <label>Price Range</label>
-            <div className="price-range">
-              <input
-                type="range"
-                min="0"
-                max="20000000"
-                step="500000"
-                value={filters.max_price}
-                onChange={(e) =>
-                  handleFilterChange("max_price", parseInt(e.target.value))
-                }
-              />
-              <span className="price-value">
-                Up to {formatPrice(filters.max_price)}
-              </span>
+          {/* Price Section */}
+          <div className="filter-group">
+            <h4 className="filter-group__title">
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+              Price Range
+            </h4>
+            <div className="filter-section">
+              <div className="price-range">
+                <div className="price-range__slider">
+                  <input
+                    type="range"
+                    min="0"
+                    max="20000000"
+                    step="500000"
+                    value={filters.max_price}
+                    onChange={(e) =>
+                      handleFilterChange("max_price", parseInt(e.target.value))
+                    }
+                  />
+                </div>
+                <div className="price-range__values">
+                  <span className="price-min">₹0</span>
+                  <span className="price-value">
+                    Up to {formatPrice(filters.max_price)}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="filter-section">
-            <label>Preferences</label>
-            <div className="filter-checkboxes">
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={filters.pet_friendly}
-                  onChange={(e) =>
-                    handleFilterChange("pet_friendly", e.target.checked)
-                  }
-                />
-                <span>Pet Friendly</span>
-              </label>
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={filters.bachelor_friendly}
-                  onChange={(e) =>
-                    handleFilterChange("bachelor_friendly", e.target.checked)
-                  }
-                />
-                <span>Bachelor Friendly</span>
-              </label>
+          {/* Preferences Section */}
+          <div className="filter-group">
+            <h4 className="filter-group__title">
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              Preferences
+            </h4>
+            <div className="filter-section">
+              <div className="filter-checkboxes">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={filters.pet_friendly}
+                    onChange={(e) =>
+                      handleFilterChange("pet_friendly", e.target.checked)
+                    }
+                  />
+                  <span className="checkbox-custom"></span>
+                  <span>Pet Friendly</span>
+                </label>
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={filters.bachelor_friendly}
+                    onChange={(e) =>
+                      handleFilterChange("bachelor_friendly", e.target.checked)
+                    }
+                  />
+                  <span className="checkbox-custom"></span>
+                  <span>Bachelor Friendly</span>
+                </label>
+              </div>
             </div>
           </div>
 
+          {/* Actions */}
           <div className="filter-actions">
             <button className="btn-filter-clear" onClick={clearFilters}>
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
               Clear All
             </button>
             <button className="btn-filter-apply" onClick={applyFilters}>
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
               Apply Filters
             </button>
           </div>
