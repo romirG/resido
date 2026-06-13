@@ -61,3 +61,22 @@ temp/
 
 # Uploads (if storing locally during dev)
 uploads/
+
+# PDF & HTML documentation files (internal use only)
+*.pdf
+RoomGi_*.html
+RoomGi_Documentation.html
+RoomGi_Features_Documentation.html
+
+# Office/Word temp lock files
+~$*
+
+# Internal planning & dev-only documents
+ABOUT_US_PLAN.md
+AUTHENTICATION_TODO.md
+BUG_FIXES.md
+FEATURES.md
+README_Plan.md
+
+# Dev error logs
+backend/error.txt
