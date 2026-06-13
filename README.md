@@ -1,200 +1,260 @@
 # ResiDo 🏠
 
-**Property Buy-Sell & Owner Management Platform**
+**A full-stack property buy-sell platform for the Indian real estate market.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)](https://postgresql.org/)
-
-A modern property marketplace for buying and selling homes directly from verified owners. Built with a sleek neon green & black UI featuring interactive maps, advanced filtering, and a floating 3D mascot.
-
-> 🚀 **Live Demo:** _Coming Soon_ | 📖 **[API Docs](#-api-endpoints)**
+ResiDo lets buyers browse verified property listings, schedule site visits, chat with an AI assistant, and explore homes through immersive 360° virtual tours — while owners get a dedicated dashboard to list, manage, and track their properties.
 
 ---
 
-## ✨ Features
+## Pages & Features
 
-- **Property Listings** — Browse flats, homes, villas, plots, and commercial properties
-- **Owner Dashboard** — Manage listings with analytics and inquiry tracking
-- **Verified Badges** — Trust system for verified owners & brokers
-- **Advanced Filters** — Search by location, price, property type, amenities, and lifestyle preferences
-- **Interactive Maps** — Property locations powered by Leaflet.js + OpenStreetMap
-- **Contact System** — Direct messaging between buyers and sellers
-- **Market Analytics** — Price trends, neighbourhood insights, and investment data
-- **3D Mascot** — Floating Spline-powered mascot companion
-- **Responsive Design** — Mobile-first approach
+### Buyer Side
+| Page | What it does |
+|------|-------------|
+| **Home** (`LuxuryHomePage`) | Hero with featured properties, discover carousel, stats, luxury project grid |
+| **Browse Properties** (`LuxuryBrowseProperties`) | Grid / map view toggle, real-time search, filter panel (city, price, bedrooms, pet-friendly, bachelor-friendly), GSAP card animations |
+| **Property Detail** (`LuxuryPropertyDetail`) | Full property info, image gallery, Leaflet map with street view modal, review section, schedule visit modal, wishlist toggle |
+| **Virtual Tour** (`VirtualTour`) | Marzipano-powered 360° panorama viewer — seeded per property ID so rooms are consistent, keyboard & drag navigation, zoom controls |
+| **Wishlist** (`WishlistPage`) | Saved properties with remove / view actions |
+| **Messages** (`MessagesPage`) | Inbox for buyer-seller conversations |
+| **Market Analytics** (`MarketAnalytics`) | City price trends (2020–2025), YoY growth, investment scores, city comparison (up to 3), forecast charts (2026–2027), buyer preference donuts — 100% frontend, no backend dependency |
+| **EMI Calculator** (`EMICalculatorPage`) | Interactive loan calculator — PMAY, SBI, HDFC, ICICI, LIC schemes, Section 80C/24b/80EE/80EEA tax breakdown, affordability checker, joint loan support |
+| **Property News** (`PropertyNews`) | Real estate news fetched from backend, auto-refreshed every 4 hours via cron |
+| **About Us** (`AboutUs`) | Team page |
+
+### Owner Side
+| Page | What it does |
+|------|-------------|
+| **Owner Landing** (`OwnerLanding`) | Marketing page for property owners |
+| **Owner Login** (`OwnerLogin`) | Email/password + Firebase auth |
+| **Owner Dashboard** (`OwnerDashboard`) | View own listings, track inquiries, manage visits |
+| **Add Property Wizard** (`AddPropertyWizard`) | Multi-step form: details → location → amenities → images (Cloudinary upload) |
+
+### Shared
+- **AI Chat Widget** (`ChatWidget`) — Groq LLM assistant on browse page; extracts search intent and returns matching property IDs from DB
+- **Auth** — Dual auth: JWT (email/password) + Firebase (Google sign-in), session management, password reset flow
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
-| Technology | Purpose |
-|------------|---------|
+| Package | Purpose |
+|---------|---------|
 | React 18 + Vite | UI framework & build tool |
-| Vanilla CSS | Custom neon green/black theme |
-| Spline | 3D mascot |
-| Leaflet.js | Interactive maps |
+| Vanilla CSS | Custom dark/gold luxury theme (`luxury-theme.css`) |
+| GSAP + ScrollTrigger | Card entrance animations on browse page |
+| Marzipano | 360° panorama viewer for virtual tours |
+| Leaflet.js + leaflet.markercluster | Interactive property maps |
+| Mapillary JS | Street view imagery on property detail |
+| Firebase | Google sign-in client SDK |
 
 ### Backend
-| Technology | Purpose |
-|------------|---------|
-| Node.js + Express.js | REST API server |
-| PostgreSQL + Sequelize ORM | Database & ORM |
-| JWT | Authentication |
-| Multer | File uploads |
-| Cloudinary | Image CDN |
-
-### Deployment
-| Service | Purpose |
+| Package | Purpose |
 |---------|---------|
-| Vercel | Frontend hosting |
-| Render.com | Backend hosting |
-| Render PostgreSQL | Managed database |
+| Express.js | REST API server |
+| Sequelize + PostgreSQL | ORM & database (`pg`, `pg-hstore`) |
+| Firebase Admin SDK | Server-side token verification |
+| JWT + bcryptjs | Email/password auth |
+| Helmet + express-rate-limit | Security headers & rate limiting |
+| Multer + Cloudinary | Image uploads to CDN |
+| Groq SDK | LLM for AI chat assistant |
+| node-cron | Scheduled news fetch (every 4 hours) |
+| express-validator | Input validation |
 
 ---
 
-## 🚀 Quick Start
+## Project Structure
+
+```
+resido/
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── LuxuryHomePage.jsx
+│   │   │   ├── LuxuryBrowseProperties.jsx
+│   │   │   ├── LuxuryPropertyDetail.jsx
+│   │   │   ├── VirtualTour.jsx          # Marzipano 360° viewer
+│   │   │   ├── MarketAnalytics.jsx      # Frontend-only analytics dashboard
+│   │   │   ├── EMICalculatorPage.jsx    # Loan + tax calculator
+│   │   │   ├── WishlistPage.jsx
+│   │   │   ├── MessagesPage.jsx
+│   │   │   ├── PropertyNews.jsx
+│   │   │   ├── AboutUs.jsx
+│   │   │   └── owner/
+│   │   │       ├── OwnerLanding.jsx
+│   │   │       ├── OwnerLogin.jsx
+│   │   │       ├── OwnerDashboard.jsx
+│   │   │       └── AddPropertyWizard.jsx
+│   │   ├── components/
+│   │   │   ├── PropertyMap.jsx          # Leaflet map with clustering
+│   │   │   ├── ChatWidget.jsx           # AI chat floating widget
+│   │   │   ├── ReviewSection.jsx
+│   │   │   ├── ScheduleVisitModal.jsx
+│   │   │   ├── StreetViewModal.jsx      # Mapillary street view
+│   │   │   ├── TrustBadge.jsx
+│   │   │   └── analytics/              # Chart components for Market Analytics
+│   │   ├── services/
+│   │   │   └── api.js                  # Axios service layer
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx         # JWT + Firebase auth state
+│   │   ├── data/
+│   │   │   └── marketAnalyticsData.js  # Static analytics dataset
+│   │   ├── styles/
+│   │   │   └── luxury-theme.css        # CSS variables & global theme
+│   │   └── utils/
+│   │       └── analyticsUtils.js
+│   ├── public/
+│   │   └── panoramas/                  # 360° panorama images (27 rooms)
+│   ├── .env.example
+│   └── vercel.json
+│
+├── backend/
+│   ├── routes/
+│   │   ├── authEnhanced.js    # JWT + Firebase auth, sessions, password reset
+│   │   ├── properties.js      # CRUD for listings
+│   │   ├── inquiries.js       # Buyer-seller inquiries
+│   │   ├── messages.js        # Direct messages
+│   │   ├── reviews.js         # Property reviews + owner responses
+│   │   ├── wishlist.js        # Save/remove properties
+│   │   ├── visits.js          # Schedule & manage site visits
+│   │   ├── chat.js            # Groq-powered AI chat
+│   │   ├── upload.js          # Cloudinary image uploads
+│   │   ├── prediction.js      # Price prediction endpoint
+│   │   ├── fraud.js           # Fraud/spam detection
+│   │   └── news.js            # Property news feed
+│   ├── controllers/           # Business logic layer
+│   ├── models/                # Sequelize models
+│   ├── middleware/
+│   │   └── auth.js            # JWT & Firebase token middleware
+│   ├── services/
+│   │   ├── groqService.js     # LLM intent extraction & response generation
+│   │   └── newsService.js     # News fetching & caching
+│   ├── config/
+│   │   └── database.js        # Sequelize PostgreSQL config
+│   ├── seeds/
+│   │   └── seedDatabase.js    # DB seed script
+│   ├── Dockerfile
+│   ├── .env.example
+│   └── server.js
+│
+└── database/
+    └── schema.sql
+```
+
+---
+
+## API Reference
+
+### Auth — `POST /api/auth/*`
+| Endpoint | Description |
+|----------|-------------|
+| `POST /register` | Register with email + password |
+| `POST /login` | Login, returns JWT |
+| `POST /firebase-sync` | Sync Firebase Google user with DB |
+| `POST /firebase-register` | Register via Firebase UID |
+| `POST /forgot-password` | Request password reset email |
+| `POST /reset-password` | Reset with token |
+| `POST /change-password` | Change password (auth required) |
+| `POST /upgrade-to-owner` | Upgrade buyer account to owner |
+| `GET /sessions` | Active sessions (auth required) |
+| `POST /logout-all` | Invalidate all sessions |
+
+### Properties — `/api/properties`
+| Endpoint | Description |
+|----------|-------------|
+| `GET /` | List all (supports `city`, `min_price`, `max_price`, `property_type`, `listing_type`, `bedrooms`, `pet_friendly`, `bachelor_friendly` query params) |
+| `GET /:id` | Single property |
+| `POST /` | Create listing (owner auth) |
+| `PUT /:id` | Update listing (owner auth) |
+| `DELETE /:id` | Delete listing (owner auth) |
+
+### Other Endpoints
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/reviews/property/:id` | Get property reviews |
+| `POST /api/reviews/property/:id` | Add review (auth) |
+| `POST /api/reviews/:id/respond` | Owner responds to review |
+| `POST /api/wishlist/:id` | Add to wishlist |
+| `DELETE /api/wishlist/:id` | Remove from wishlist |
+| `GET /api/wishlist/check/:id` | Check if wishlisted |
+| `POST /api/visits` | Schedule visit (auth) |
+| `GET /api/visits/owner` | Owner's incoming visits |
+| `GET /api/visits/my-visits` | Buyer's own visits |
+| `PATCH /api/visits/:id/status` | Confirm/decline visit |
+| `POST /api/messages` | Send message |
+| `GET /api/messages` | Get inbox |
+| `POST /api/chat` | AI chat (Groq) |
+| `GET /api/chat/history/:token` | Chat session history |
+| `POST /api/upload` | Upload image to Cloudinary |
+| `GET /api/news` | Get property news |
+| `POST /api/predict-price` | Price prediction |
+
+---
+
+## Setup
 
 ### Prerequisites
 - Node.js 18+
 - PostgreSQL 15+
-- npm or yarn
+- Cloudinary account
+- Firebase project (for Google auth)
+- Groq API key (for AI chat)
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/romirG/resido.git
 cd resido
 
-# Install frontend dependencies
-cd frontend
-npm install
+# Frontend
+cd frontend && npm install
 
-# Install backend dependencies
-cd ../backend
-npm install
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your credentials (see Environment Variables section below)
+# Backend
+cd ../backend && npm install
 ```
 
-### Running Development Servers
+### Environment Variables
 
-```bash
-# Terminal 1 — Frontend (http://localhost:3000)
-cd frontend
-npm run dev
-
-# Terminal 2 — Backend (http://localhost:5000)
-cd backend
-npm run dev
-```
-
----
-
-## ⚙️ Environment Variables
-
-### Backend (`backend/.env`)
-
+**`backend/.env`** (see `backend/.env.example`):
 ```env
-# Database
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=resido
 DB_USER=your_db_user
 DB_PASSWORD=your_db_password
-
-# Auth
-JWT_SECRET=your_super_secret_key
-
-# Cloudinary (image uploads)
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-# Server
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+GROQ_API_KEY=...
+FRONTEND_URL=http://localhost:3000
 PORT=5000
 NODE_ENV=development
 ```
 
-### Frontend (`frontend/.env`)
-
+**`frontend/.env`** (see `frontend/.env.example`):
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:5000/api
 ```
 
-See `backend/.env.example` and `frontend/.env.example` for the full list.
+### Running
 
----
+```bash
+# Terminal 1 — Backend (http://localhost:5000)
+cd backend
+npm run dev
 
-## 📁 Project Structure
+# Terminal 2 — Frontend (http://localhost:3000)
+cd frontend
+npm run dev
 
-```
-resido/
-├── frontend/               # React + Vite app
-│   ├── public/            # Static assets (logo, hero images)
-│   ├── src/
-│   │   ├── components/    # Reusable React components
-│   │   ├── pages/         # Page components
-│   │   ├── services/      # API service layer
-│   │   ├── App.jsx        # Main app component
-│   │   └── index.css      # Global styles (neon theme)
-│   ├── vercel.json        # Vercel deployment config
-│   └── package.json
-│
-├── backend/                # Node.js + Express API
-│   ├── routes/            # API route handlers
-│   ├── controllers/       # Business logic
-│   ├── models/            # Sequelize models
-│   ├── middleware/        # Auth & validation middleware
-│   ├── config/            # Database config
-│   ├── seeds/             # Database seed data
-│   ├── Dockerfile         # Container config
-│   └── server.js          # Entry point
-│
-├── database/               # SQL schemas
-│   └── schema.sql
-│
-└── README.md
+# Seed the database (optional)
+cd backend
+npm run seed
 ```
 
----
-
-## 📊 Database Schema
-
-Key tables:
-- `users` — Buyers, owners, brokers
-- `properties` — Listings with geo-coordinates
-- `images` — Property photos (Cloudinary URLs)
-- `reviews` — User ratings & comments
-- `inquiries` — Buyer-seller messages
-- `wishlist` — Saved properties
-
-See [`database/schema.sql`](database/schema.sql) for the full schema.
-
----
-
-## 🔗 API Endpoints
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/auth/register` | User signup | — |
-| `POST` | `/api/auth/login` | User login | — |
-| `GET` | `/api/properties` | List properties (with filters) | — |
-| `GET` | `/api/properties/:id` | Get single property | — |
-| `POST` | `/api/properties` | Create listing | ✅ Owner |
-| `PUT` | `/api/properties/:id` | Update listing | ✅ Owner |
-| `DELETE` | `/api/properties/:id` | Delete listing | ✅ Owner |
-| `POST` | `/api/inquiries` | Send inquiry | ✅ User |
-| `GET` | `/api/users/:id/listings` | Owner's properties | ✅ Owner |
-
----
-
-## 🐳 Docker (Backend)
+### Docker (Backend only)
 
 ```bash
 cd backend
@@ -204,30 +264,11 @@ docker run -p 5000:5000 --env-file .env resido-backend
 
 ---
 
-## 🤝 Contributing
+## Deployment
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Team
-
-Built with 💚 for property seekers everywhere.
-
----
-
-*Last Updated: June 2026*
+| Service | Purpose |
+|---------|---------|
+| Vercel | Frontend (`vercel.json` already configured) |
+| Render.com | Backend (Dockerfile included) |
+| Render PostgreSQL | Managed database |
+| Cloudinary | Image CDN |
