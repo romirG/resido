@@ -6,6 +6,31 @@ ResiDo lets buyers browse verified property listings, schedule site visits, chat
 
 ---
 
+## Table of Contents
+
+- [Pages & Features](#pages--features)
+  - [Buyer Side](#buyer-side)
+  - [Owner Side](#owner-side)
+  - [Shared](#shared)
+- [Tech Stack](#tech-stack)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [Project Structure](#project-structure)
+- [API Reference](#api-reference)
+  - [Auth](#auth----post-apiauthasterisk)
+  - [Properties](#properties----apiproperties)
+  - [Other Endpoints](#other-endpoints)
+- [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+  - [Running](#running)
+  - [Docker](#docker-backend-only)
+- [Deployment](#deployment)
+- [About](#about)
+
+---
+
 ## Pages & Features
 
 ### Buyer Side
